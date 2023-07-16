@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  m3dns:
+    container_name: m3dns
+    image: breakvoid/m3dns:latest                  # the url to built image
+    restart: unless-stopped
+    volumes:
+      - ./config:/config                           # map the folder of configuration
+    environment:
+      TOKEN_FILE: /run/secrets/alitoken            # pass access token via docker swarm secrets
+      IPV6: 1
+      DOMAIN: examp.le
+      RM_FILE: /config/rr_mac_example.csv
+      PROVIDER: aliyun
+    secrets:
+      - alitoken
+secrets:
+  alitoken:
+    file: tokens/ali_token_example.csv
+networks:
+  default:
+    enable_ipv6: true
