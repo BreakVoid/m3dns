@@ -1,0 +1,13 @@
+[Unit]
+Description=M3DNS Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/.m3dns
+ExecStart=/usr/bin/python3 m3cli.py -6 -d abc.xyz -t tokens/ali_token_example.csv -rl config/rr_mac_example.csv
+Restart=on-failure
+RestartSec=1s
+
+[Install]
+WantedBy=multi-user.target

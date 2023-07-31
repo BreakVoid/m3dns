@@ -2,7 +2,7 @@
 Multiple **D**evices **D**ynamic **D**NS(`m3dns`) is a python package to updating nameservers for multiple devices in 
 a subnet, especially for a IPv6 subnet with a prefix shorter than 64.
 
-## Usage
+## Usage (HTTP Server)
 
 ### 1. Install requirements
 ```bash
@@ -49,3 +49,27 @@ curl http://localhost:8080/healthcheck
 
 ## Using in Docker
 Check `docker-compose.yml` for further details.
+
+## CLI usage
+### Run once
+Example: Updating AAAA records
+```bash
+python3 m3cli.py -6 -d example.com -t=tokens/ali_token_example.csv -rl=config/rr_mac_example.csv 
+```
+*Note that the system should have correct configuration about ipv6.*
+
+### Run with schedule
+#### Using `systemd` (Recommanded)
+1. Create two files, i.e., [`m3dns.service`](systemd-service/m3dns.service) and [`m3dns.timer`](systemd-service/m3dns.timer).
+2. Rewrite `Service-WorkingDirectory` in `m3dns.service` correctly in your pc.
+3. Modify `-t` and `-rl` arguments correctly according to your settings.
+4. Run command 
+```bash
+ln -s `pwd`/m3dns.service /etc/systemd/system/
+ln -s `pwd`/m3dns.timer /etc/systemd/system/
+systemctl enable m3dns.service m3dns.timer
+systemctl start m3dns
+```
+#### Using `crontab`
+*to be filled.*
+

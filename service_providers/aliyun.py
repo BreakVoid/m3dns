@@ -15,9 +15,9 @@ from utils import get_record_type
 def load_access_token(path: Union[str, TextIO]) -> Tuple[str, str]:
     if isinstance(path, str):
         with open(path, 'r') as f:
-            second_line = f.readlines()[1]
+            second_line = f.readlines()[1].strip()
     else:
-        second_line = path.readlines()[1]
+        second_line = path.readlines()[1].strip()
     key_id, secret = second_line.split(',')[2:]
     return key_id, secret
 
