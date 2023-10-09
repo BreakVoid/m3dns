@@ -1,12 +1,14 @@
+import datetime
 import logging
 import os
 
 from flask import Flask
+from flask_apscheduler import APScheduler
 
-from service_providers import get_impl_by_name, AVAILABLE_PROVIDERS
-from utils import load_rr_mac
-from utils.api import get_public_ip_addr_ver4, get_public_ip_addr_ver6
-from utils.eui64 import mac2eui64
+from m3dns.service_providers import get_impl_by_name, AVAILABLE_PROVIDERS
+from m3dns.utils.utils import load_rr_mac
+from m3dns.utils import get_public_ip_addr_ver4, get_public_ip_addr_ver6
+from m3dns.utils import mac2eui64
 
 logging.basicConfig(
     format='%(asctime)s %(levelname)s %(message)s',
@@ -34,6 +36,9 @@ app.config['token_file'] = ENV_TOKEN_FILE
 app.config['rr_list_file'] = ENV_RM_FILE
 app.config['domain'] = ENV_DOMAIN
 app.config['provider'] = ENV_PROVIDER
+scheduler = APScheduler()  # 定时任务调度器
+scheduler.init_app(app)
+scheduler.start()  # 定时任务开始
 
 
 @app.route('/')
@@ -41,7 +46,7 @@ def index() -> str:
     return 'm3dns service is running.'
 
 
-@app.route('/healthcheck')
+@scheduler.task('interval', id='update_ddns_records', seconds=300, misfire_grace_time=900)
 def update_records():
     ipv4 = app.config['ipv4']
     ipv6 = app.config['ipv6']

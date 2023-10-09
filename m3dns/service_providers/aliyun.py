@@ -8,8 +8,8 @@ from aliyunsdkalidns.request.v20150109.DescribeSubDomainRecordsRequest import De
 from aliyunsdkalidns.request.v20150109.UpdateDomainRecordRequest import UpdateDomainRecordRequest
 from aliyunsdkcore.client import AcsClient
 
-from service_providers.base import BaseDdnsService
-from utils import get_record_type
+from .base import BaseDdnsService
+from ..utils.utils import get_record_type
 
 
 def load_access_token(path: Union[str, TextIO]) -> Tuple[str, str]:

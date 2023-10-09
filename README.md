@@ -54,7 +54,7 @@ Check `docker-compose.yml` for further details.
 ### Run once
 Example: Updating AAAA records
 ```bash
-python3 m3cli.py -6 -d example.com -t=tokens/ali_token_example.csv -rl=config/rr_mac_example.csv 
+python3 -m m3dns -6 -d example.com -t=tokens/ali_token_example.csv -rl=config/rr_mac_example.csv 
 ```
 *Note that the system should have correct configuration about ipv6.*
 

@@ -2,6 +2,7 @@
 requests
 flask
 waitress
+Flask-APScheduler
 
 # Aliyun API requirements
 aliyun-python-sdk-core-v3

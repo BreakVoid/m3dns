@@ -1,6 +1,6 @@
 import argparse
 
-from service_providers import AVAILABLE_PROVIDERS
+from ..service_providers import AVAILABLE_PROVIDERS
 
 
 def get_argument_parser() -> argparse.ArgumentParser:

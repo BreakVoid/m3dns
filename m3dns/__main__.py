@@ -1,10 +1,9 @@
 import logging
 
-from service_providers import get_impl_by_name
-from utils import load_rr_mac
-from utils.api import get_public_ip_addr_ver4, get_public_ip_addr_ver6
-from utils.args import get_argument_parser, check_arguments
-from utils.eui64 import mac2eui64
+from m3dns.service_providers import get_impl_by_name
+from m3dns.utils import get_public_ip_addr_ver4, get_public_ip_addr_ver6, \
+    get_argument_parser, check_arguments, mac2eui64
+from m3dns.utils.utils import load_rr_mac
 
 logging.basicConfig(
     format='%(asctime)s %(levelname)s %(message)s',

@@ -1,9 +1,10 @@
 version: "3.8"
+name: m3dns
 services:
   m3dns:
     container_name: m3dns
     image: breakvoid/m3dns:latest                  # the url to built image
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./config:/config                           # map the folder of configuration
     environment:
