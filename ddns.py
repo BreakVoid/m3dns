@@ -46,7 +46,10 @@ def index() -> str:
     return 'm3dns service is running.'
 
 
-@scheduler.task('interval', id='update_ddns_records', seconds=300, misfire_grace_time=900)
+@scheduler.task(
+    'interval', id='update_ddns_records', seconds=300,
+    misfire_grace_time=900, next_run_time=datetime.datetime.now(),
+)
 def update_records():
     ipv4 = app.config['ipv4']
     ipv6 = app.config['ipv6']
