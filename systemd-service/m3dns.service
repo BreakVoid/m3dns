@@ -8,6 +8,7 @@ WorkingDirectory=/root/.m3dns
 ExecStart=/usr/bin/python3 -m m3dns -6 -d abc.xyz -t tokens/ali_token_example.csv -rl config/rr_mac_example.csv
 Restart=on-failure
 RestartSec=1s
+TimeoutSec=120s
 
 [Install]
 WantedBy=multi-user.target

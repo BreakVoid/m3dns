@@ -6,8 +6,8 @@ setup(
     description='Multiple Devices Dynamic DNS(`m3dns`) is a python package to updating nameservers for multiple devices'
                 ' in a subnet, especially for a IPv6 subnet with a prefix shorter than 64.',
     author='BreakVoid',
-    author_email='songyu-ke@outlook.com',
-    url='https://www.python.org/sigs/distutils-sig/',
+    author_email='fishtara@outlook.com',
+    url='https://github.com/BreakVoid/m3dns',
     packages=['m3dns'],
     requires=[
         'requests',
