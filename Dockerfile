@@ -1,4 +1,4 @@
-FROM python:3.11-alpine
+FROM python:3.12-alpine
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.bfsu.edu.cn/g' /etc/apk/repositories \
     && pip config set global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple \
     && pip install flask waitress Flask-APScheduler requests \
